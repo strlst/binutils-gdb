@@ -2294,14 +2294,15 @@ const struct riscv_opcode riscv_opcodes[] =
 {"sfence.vma", 0, INSN_CLASS_I, "s",   MATCH_SFENCE_VMA, MASK_SFENCE_VMA|MASK_RS2, match_opcode, INSN_ALIAS },
 {"sfence.vma", 0, INSN_CLASS_I, "s,t", MATCH_SFENCE_VMA, MASK_SFENCE_VMA, match_opcode, 0 },
 {"wfi",        0, INSN_CLASS_I, "",    MATCH_WFI, MASK_WFI, match_opcode, 0 },
-// TODO
-{"tecreate",   0, INSN_CLASS_I, "d",    MATCH_TECREATE, MASK_TECREATE, match_opcode, 0 },
-{"tedestroy",  0, INSN_CLASS_I, "s",    MATCH_TEDESTROY, MASK_TEDESTROY, match_opcode, 0 },
-{"teadd",      0, INSN_CLASS_I, "s,t",    MATCH_TEADD, MASK_TEADD, match_opcode, 0 },
-{"teremove",   0, INSN_CLASS_I, "s,t",    MATCH_TEREMOVE, MASK_TEREMOVE, match_opcode, 0 },
-{"teinit",     0, INSN_CLASS_I, "s",    MATCH_TEINIT, MASK_TEINIT, match_opcode, 0 },
-{"teenter",    0, INSN_CLASS_I, "s",    MATCH_TEENTER, MASK_TEENTER, match_opcode, 0 },
-{"teexit",     0, INSN_CLASS_I, "s",    MATCH_TEEXIT, MASK_TEEXIT, match_opcode, 0 },
+
+/* TEEXT instructions. */
+{"tecreate",   0, INSN_CLASS_I, "d",    MATCH_TECREATE, MASK_TECREATE|MASK_RS1|MASK_IMM, match_opcode, 0 },
+{"tedestroy",  0, INSN_CLASS_I, "s",    MATCH_TEDESTROY, MASK_TEDESTROY|MASK_RD|MASK_IMM, match_opcode, 0 },
+{"teinit",     0, INSN_CLASS_I, "s",    MATCH_TEINIT, MASK_TEINIT|MASK_RD|MASK_IMM, match_opcode, 0 },
+{"teenter",    0, INSN_CLASS_I, "s",    MATCH_TEENTER, MASK_TEENTER|MASK_RD, match_opcode, 0 },
+{"teexit",     0, INSN_CLASS_I, "s",    MATCH_TEEXIT, MASK_TEEXIT|MASK_RD, match_opcode, 0 },
+{"teadd",      0, INSN_CLASS_I, "s,t",  MATCH_TEADD, MASK_TEADD|MASK_RD|MASK_IMM, match_opcode, 0 },
+{"teremove",   0, INSN_CLASS_I, "s,t",  MATCH_TEREMOVE, MASK_TEREMOVE|MASK_RD|MASK_IMM, match_opcode, 0 },
 
 /* Smctr/Ssctr instruction.  */
 {"sctrclr", 0, INSN_CLASS_SMCTR_OR_SSCTR, "", MATCH_SCTRCLR, MASK_SCTRCLR, match_opcode, 0 },
