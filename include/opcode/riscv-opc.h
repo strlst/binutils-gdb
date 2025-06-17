@@ -293,6 +293,25 @@
 #define MASK_SFENCE_VMA  0xfe007fff
 #define MATCH_WFI 0x10500073
 #define MASK_WFI  0xffffffff
+/* TEEXT START */
+// NOTE:
+// 32-bit instructions MUST have 32-bit masks (there can be no undefined instruction fields)
+// 32-bit instructions are ALWAYS suffixed with 11, so using the custom op region 0x78 still yields an opcode 0x7f mask
+#define MATCH_TECREATE  0x007b
+#define MASK_TECREATE   0xfffff07f
+#define MATCH_TEDESTROY 0x107b
+#define MASK_TEDESTROY  0xffffffff
+#define MATCH_TEENTER   0x207b
+#define MASK_TEENTER    0xffffffff
+#define MATCH_TEEXIT    0x307b
+#define MASK_TEEXIT     0xffffffff
+#define MATCH_TEINIT    0x407b
+#define MASK_TEINIT     0xffffffff
+#define MATCH_TEADD     0x507b
+#define MASK_TEADD      0xffffffff
+#define MATCH_TEREMOVE  0x607b
+#define MASK_TEREMOVE   0xffffffff
+/* END */
 #define MATCH_CSRRW 0x1073
 #define MASK_CSRRW  0x707f
 #define MATCH_CSRRS 0x2073
@@ -4256,6 +4275,15 @@
 #define CSR_VLENB 0xc22
 #endif /* RISCV_ENCODING_H */
 #ifdef DECLARE_INSN
+/* TEEXT START */
+DECLARE_INSN(tecreate, MATCH_TECREATE, MASK_TECREATE)
+DECLARE_INSN(tedestroy, MATCH_TEDESTROY, MASK_TEDESTROY)
+DECLARE_INSN(teadd, MATCH_TEADD, MASK_TEADD)
+DECLARE_INSN(teremove, MATCH_TEREMOVE, MASK_TEREMOVE)
+DECLARE_INSN(teenter, MATCH_TEENTER, MASK_TEENTER)
+DECLARE_INSN(teexit, MATCH_TEEXIT, MASK_TEEXIT)
+DECLARE_INSN(teinit, MATCH_TEINIT, MASK_TEINIT)
+/* END */
 DECLARE_INSN(slli_rv32, MATCH_SLLI_RV32, MASK_SLLI_RV32)
 DECLARE_INSN(srli_rv32, MATCH_SRLI_RV32, MASK_SRLI_RV32)
 DECLARE_INSN(srai_rv32, MATCH_SRAI_RV32, MASK_SRAI_RV32)
