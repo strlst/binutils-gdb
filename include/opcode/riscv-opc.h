@@ -296,20 +296,21 @@
 /* TEEXT START */
 // NOTE:
 // 32-bit instructions MUST have 32-bit masks (there can be no undefined instruction fields)
-// 32-bit instructions are ALWAYS suffixed with 11, so using the custom op region 0x78 still yields an opcode 0x7f mask
-#define MATCH_TECREATE  0x007b
+// 32-bit instructions are ALWAYS suffixed with 11, so using the custom opcode 0x17 still yields an opcode 0x5f mask
+// 32-bit custom instructions with opcode 0x1e are intercepted by gem5
+#define MATCH_TECREATE  0x005b
 #define MASK_TECREATE   0x0000707f
-#define MATCH_TEDESTROY 0x107b
+#define MATCH_TEDESTROY 0x105b
 #define MASK_TEDESTROY  0x0000707f
-#define MATCH_TEENTER   0x207b
+#define MATCH_TEENTER   0x205b
 #define MASK_TEENTER    0xfff0707f
-#define MATCH_TEEXIT    0x307b
+#define MATCH_TEEXIT    0x305b
 #define MASK_TEEXIT     0xfff0707f
-#define MATCH_TEINIT    0x407b
+#define MATCH_TEINIT    0x405b
 #define MASK_TEINIT     0x0000707f
-#define MATCH_TEADD     0x507b
+#define MATCH_TEADD     0x505b
 #define MASK_TEADD      0xfe00707f
-#define MATCH_TEREMOVE  0x607b
+#define MATCH_TEREMOVE  0x605b
 #define MASK_TEREMOVE   0xfe00707f
 /* END */
 #define MATCH_CSRRW 0x1073
